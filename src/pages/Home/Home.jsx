@@ -42,22 +42,40 @@ const Home = () => {
       <ApiClima />
       <div className={style.conjunto_botoes}>
         <button onClick={handleBuscarLocais} className={style.botao_azul}>
-          <img className={style.img} src={casa} alt='buscar local'/>
+          <img
+          className={style.imgCasa}
+          src={casa} alt='buscar local'/>
           <p>Buscar Local</p>
         </button>
 
         <button onClick={handleDoacao} className={style.botao_azul}>
-          <img src={doacao} alt='doação'/>
+          <img
+            className={style.imgCaixa} 
+            src={doacao} 
+            // width={110}
+            // heigth={110}
+            alt='doação'/>
           <p>Doações</p>
         </button>
 
         <button onClick={handleContatos} className={style.botao_azul}>
-          <img src={telefone} alt='telefone'/>
+          <img 
+            className={style.imgTelefone}
+            src={telefone} 
+            // width={70}
+            // heigth={70}
+            alt='telefone'/>
           <p>Contatos de Emergência</p>
         </button>
 
         <button onClick={handleAcompanhar} className={style.botao_azul}>
-          <img src={alerta} alt='alerta'/>
+          <img 
+
+            src={alerta}
+            className={style.imgAlerta} 
+            // width={90}
+            // heigth={90}
+            alt='alerta'/>
           <p>Acompanhar<br></br>Alerta</p>
         </button>
       </div>

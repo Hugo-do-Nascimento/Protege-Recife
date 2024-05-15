@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import style from './../ApiClima/ApiClima.module.css'; // Certifique-se de ter o arquivo CSS adequado importado
-import axios from 'axios'; // Você precisará instalar axios via npm ou yarn
+import style from './../ApiClima/ApiClima.module.css';
+import axios from 'axios';
 
 function ApiClima() {
   const [city, setCity] = useState("Recife");

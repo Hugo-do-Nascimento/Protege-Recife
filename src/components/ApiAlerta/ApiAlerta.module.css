@@ -2,7 +2,7 @@
 .Imagem{
     display: flex;
     align-content: center;
-    margin: 50px auto 10px auto;
+    margin: 0px auto 0px auto;
     align-items: center;
     justify-content: center;
     padding: 0px;
@@ -19,8 +19,8 @@ font-size: 18px;
 .text_regiao{
     font-weight: bold;
     font-size: 30px;
+    padding: 10px 0px;
     margin: 0px;
-    padding: 20px 0px;
 
 }
 .storm-text {
@@ -53,9 +53,9 @@ font-size: 18px;
   
   .normal-text {
     color: rgb(0, 255, 34);
-    font-size: 60px;
+    font-size: 20px;
+    padding-left:30px;
+    padding-right: 30px;
     font-weight: bold;
-    margin: 0px;
-    padding: 20px 0px;
-
+    text-align: center;
   }

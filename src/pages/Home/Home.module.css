@@ -52,8 +52,22 @@
     padding-top: auto;
 }
 
-
-
+.imgCasa{
+    width: 100px;
+    height: 100px; 
+}
+.imgTelefone{
+    width: 70px;
+    height: 70px;
+}
+.imgAlerta{
+    width: 90px;
+    height: 90px;
+}
+.imgCaixa{
+    width: 110px;
+    height: 110px;
+}
 @media (max-width: 768px) {
     .botao_azul {
         width: 160px;
@@ -65,9 +79,20 @@
         font-size: 15px;
     }
 
-    .img {
+    .imgCasa {
         width: 90px;
         height: 90px;
+    }
+
+    .imgAlerta {
+
+    }
+
+    .imgCaixa{
+
+    }
+    .imgTelefone{
+
     }
 }
 
