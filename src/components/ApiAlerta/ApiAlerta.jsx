@@ -1,9 +1,13 @@
 // App.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Drizzle from '../../assets/drizzle.svg';
+import Normal from '../../assets/Normal.svg';
+import storm from '../../assets/storm.svg';
+import Rain from '../../assets/Rain.svg';
 import Styles from './ApiAlerta.module.css'
 const API_KEY = '447954334ef4e0c591d2ef05536ccc95';
-const CITY_NAME = 'Recife'; // Substitua 'NOME_DA_CIDADE' pelo nome da cidade desejada.
+const CITY_NAME = 'Patos'; // Substitua 'NOME_DA_CIDADE' pelo nome da cidade desejada.
 
 const ApiAlerta = () => {
   const [weather, setWeather] = useState(null);
@@ -33,29 +37,29 @@ const ApiAlerta = () => {
 
 
     if (weatherDescription.includes('tempestade')) { 
-    imageUrl = 'https://cdn-icons-png.freepik.com/512/3937/3937493.png';
-    descriptionClima = "Alerta Vermelho";// URL_PARA_tempestade
-    descriptionClass = Styles['storm-text']; // Aplica a classe CSS para clima normal
+      imageUrl = [storm];
+      descriptionClima = "Alerta Vermelho";// URL_PARA_tempestade
+      descriptionClass = Styles['storm-text']; // Aplica a classe CSS para clima normal
 } else if (weatherDescription.includes('chuva')) { 
-    imageUrl = 'https://cdn-icons-png.freepik.com/512/3937/3937493.png';
+    imageUrl = [Rain];
     descriptionClima = "Alerta Laranja";// URL_PARA_CHUVA forte
     descriptionClass = Styles['rain-text']; // Aplica a classe CSS para clima normal
 
   } else if (weatherDescription.includes('chuvisco')) { 
-    imageUrl = 'https://cdn-icons-png.flaticon.com/512/3248/3248333.png'; // URL_PARA_CHUVISCO
+    imageUrl = [Drizzle]; // URL_PARA_CHUVISCO
     descriptionClima = "Alerta Amarelo";
     descriptionClass = Styles['drizzle-text']; // Aplica a classe CSS para chuva fraca 
   } 
     else {
-    imageUrl = 'https://cdn-icons-png.flaticon.com/512/178/178338.png'; // URL_PARA_CLIMA_NORMAL
-    descriptionClima = "No momento não há impacto significativo na rotina da cidade, mas seguimos monitorando";
-    descriptionClass = Styles['normal-text']; // Aplica a classe CSS para clima normal
+      imageUrl = [Normal]; // URL_PARA_CLIMA_NORMAL
+      descriptionClima = "No momento não há impacto significativo na rotina da cidade, mas seguimos monitorando";
+      descriptionClass = Styles['normal-text']; // Aplica a classe CSS para clima normal
 
   }
 
   return (
     <div className={Styles.Container}>
-    <div className={Styles.Imagem} style={{ backgroundImage: `url(${imageUrl})`, width: '180px', height: '180px', backgroundSize: 'cover' }}></div>
+    <div className={Styles.Imagem} style={{ backgroundImage: `url(${imageUrl})`, backgroundSize: 'cover' }}></div>
     <div className={Styles.Alerta}>
     <p className={Styles.text_regiao}> Cidade em Estágio de: </p>
     <p className={descriptionClass}>{descriptionClima}</p>
