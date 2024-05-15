@@ -7,7 +7,7 @@ import storm from '../../assets/storm.svg';
 import Rain from '../../assets/Rain.svg';
 import Styles from './ApiAlerta.module.css'
 const API_KEY = '447954334ef4e0c591d2ef05536ccc95';
-const CITY_NAME = 'Patos'; // Substitua 'NOME_DA_CIDADE' pelo nome da cidade desejada.
+const CITY_NAME = 'Recife'; // Substitua 'NOME_DA_CIDADE' pelo nome da cidade desejada.
 
 const ApiAlerta = () => {
   const [weather, setWeather] = useState(null);

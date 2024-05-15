@@ -55,9 +55,9 @@ font-size: 18px;
 
 .normal-text {
   color: rgb(0, 255, 34);
-  font-size: 60px;
+  font-size: 40px;
   font-weight: bold;
-  margin: 0px;
+  margin: 0px 110px;
   padding: 20px 0px;
 
 }
