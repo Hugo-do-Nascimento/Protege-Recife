@@ -14,6 +14,7 @@ import BuscarLocais from './pages/BuscarLocais/BuscarLocais';
 import Doacao from './pages/Doacao/Doacao';
 import ContatosDeEmergencia from './pages/ContatosDeEmergencia/ContatosDeEmergencia';
 import AcompanharAlerta from './pages/AcompanharAlerta/AcompanharAlerta';
+import NotFound from './pages/NotFound/NotFound';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
           <Route path='/doacoes' element={usuario ? <Doacao /> : <Navigate to="/login" />}/>
           <Route path='/contatos' element={usuario ? <ContatosDeEmergencia /> : <Navigate to="/login" />}/>
           <Route path='/acompanhar-alerta' element={usuario ? <AcompanharAlerta /> : <Navigate to="/login" />}/>
+          <Route path='*' element={ <NotFound /> } />
         </Routes>
       </BrowserRouter>
     </div>
