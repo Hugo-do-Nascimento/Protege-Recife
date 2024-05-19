@@ -7,10 +7,15 @@ import ApiAlerta from '../../components/ApiAlerta/ApiAlerta';
 
 // Funções para direcionamento de paginas
 import Chatbot from '../../components/Chatbot/Chatbot';
+  import { useNavigate } from 'react-router-dom';
 
 function Alerta() {
 
-
+  const navigate = useNavigate();
+  
+    const handleBuscarLocal = () => {
+      navigate('/buscar-locais');
+    }
 
 
   return (
@@ -20,8 +25,12 @@ function Alerta() {
     <Chatbot />
     <ApiAlerta/>
     <p>Encontre um lugar para se abrigar</p>
-    <button className={Styles.btn}>Buscar Local</button>
-    </div>
+    <button onClick={handleBuscarLocal} className={Styles.btn}>
+          Buscar Local
+          </button>
+    </div>    
+      
+    
   )
 }
 
