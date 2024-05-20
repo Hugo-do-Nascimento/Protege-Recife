@@ -6,7 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import Navbar from '../../components/Navbar/Navbar';
-import SearchIcon from '@mui/icons-material/Search';
+// import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 
 const Search = styled('div')(({ theme }) => ({
@@ -98,7 +98,7 @@ const BuscarLocais = () => {
     <h2>Buscar Locais</h2>
     <Search>
             <SearchIconWrapper>
-              <SearchIcon />
+              {/* <SearchIcon /> */}
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Search…"
