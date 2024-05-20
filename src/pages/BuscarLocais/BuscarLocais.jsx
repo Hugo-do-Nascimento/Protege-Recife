@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, styled } from '@mui/material';
+import Navbar from '../../components/Navbar/Navbar';
 
 const StyledCardContent = styled(CardContent)({
   backgroundColor: '#3969c5',
@@ -49,6 +50,7 @@ const BuscarLocais = () => {
 
   return (
     <>
+    <Navbar />
     <h2>Buscar Locais</h2>
     <div className={Style.conjutoCards}>
       {dadosAbrigo.map((abrigo, index) => (

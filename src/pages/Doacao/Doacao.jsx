@@ -15,6 +15,7 @@ import CamaMesaBanho from '../../components/CamaMesaBanho/CamaMesaBanho';
 import HigieneLimpeza from '../../components/HigieneLimpeza/HigieneLimpeza';
 import MaterialEscolar from '../../components/MaterialEscolar/MaterialEscolar';
 import Vestuario from '../../components/Vestuario//Vestuario';
+import Navbar from '../../components/Navbar/Navbar';
 
 const Doacao = () => {
 
@@ -26,6 +27,7 @@ const Doacao = () => {
 
   return (
     <div>
+      <Navbar />
       <h1><span>Categorias</span></h1>
       <div className={style.conjunto_botoes}>
         <button onClick={() => handleCategoriaClick('alimentacao')} className={style.botao_azul}>
