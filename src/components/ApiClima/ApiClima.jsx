@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import style from './../ApiClima/ApiClima.module.css'; // Certifique-se de ter o arquivo CSS adequado importado
-import axios from 'axios'; // Você precisará instalar axios via npm ou yarn
+import style from './../ApiClima/ApiClima.module.css';
+import axios from 'axios';
 
 function ApiClima() {
   const [city, setCity] = useState("Recife");
@@ -14,7 +14,7 @@ function ApiClima() {
       setError(null);
 
       try {
-        const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=447954334ef4e0c591d2ef05536ccc95&lang=pt_br`);
+        const response = await axios.get(https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=447954334ef4e0c591d2ef05536ccc95&lang=pt_br);
         setWeatherData(response.data);
       } catch (error) {
         setError("Não foi possível encontrar o clima de uma cidade com este nome");
@@ -26,7 +26,6 @@ function ApiClima() {
     fetchData();
   }, [city]);
 
-  // eslint-disable-next-line no-unused-vars
   const handleChangeCity = (event) => {
     setCity(event.target.value);
   };
@@ -77,7 +76,7 @@ function ApiClima() {
           </div>
           <div className={style.description_container}>
             <p className={style.description}>{weatherData.weather[0].description}</p>
-            <img src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`} alt="Condições do tempo" id="weather-icon" />
+            <img src={https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png} alt="Condições do tempo" id="weather-icon" />
           </div>  
           </div>
       )}
