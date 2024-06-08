@@ -1,13 +1,13 @@
 // App.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Drizzle from '../../assets/drizzle.svg';
-import Normal from '../../assets/Normal.svg';
-import storm from '../../assets/storm.svg';
-import Rain from '../../assets/Rain.svg';
+import Normal from '../../assets/thumbs-up.svg';
+import AlertaMax from '../../assets/siren.svg';
+import AlertMed from '../../assets/triangle-alert.svg';
 import Styles from './ApiAlerta.module.css'
+
 const API_KEY = '447954334ef4e0c591d2ef05536ccc95';
-const CITY_NAME = 'Recife'; // Substitua 'NOME_DA_CIDADE' pelo nome da cidade desejada.
+const CITY_NAME = 'Recife';
 
 const ApiAlerta = () => {
   const [weather, setWeather] = useState(null);
@@ -15,7 +15,7 @@ const ApiAlerta = () => {
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${CITY_NAME}&units=metric&appid=${API_KEY}&lang=pt_br`);
+        const response = await axios.get(https://api.openweathermap.org/data/2.5/weather?q=${CITY_NAME}&units=metric&appid=${API_KEY}&lang=pt_br);
         setWeather(response.data);
       } catch (error) {
         console.error('Erro ao obter dados meteorológicos:', error);
@@ -30,45 +30,38 @@ const ApiAlerta = () => {
   }
 
   const weatherDescription = weather.weather[0].description;
-  let imageUrl;
-  let descriptionClima;
-  let descriptionClass;
-
-
+    let imageUrl;
+    let descriptionClima;
+    let descriptionClass;
 
     if (weatherDescription.includes('tempestade')) { 
-      imageUrl = [storm];
-      descriptionClima = "Alerta Vermelho";// URL_PARA_tempestade
-      descriptionClass = Styles['storm-text']; // Aplica a classe CSS para clima normal
-} else if (weatherDescription.includes('chuva')) { 
-    imageUrl = [Rain];
-    descriptionClima = "Alerta Laranja";// URL_PARA_CHUVA forte
-    descriptionClass = Styles['rain-text']; // Aplica a classe CSS para clima normal
-
-  } else if (weatherDescription.includes('chuvisco')) { 
-    imageUrl = [Drizzle]; // URL_PARA_CHUVISCO
-    descriptionClima = "Alerta Amarelo";
-    descriptionClass = Styles['drizzle-text']; // Aplica a classe CSS para chuva fraca 
-  } 
-    else {
+      imageUrl = [AlertaMax];
+      descriptionClima = "Alerta de chuvas intensas! Risco de enchentes e deslizamentos. Evite áreas de risco e busque abrigo seguro imediatamente.";// URL_PARA_tempestade
+      descriptionClass = Styles['storm-text'];
+    } else if (weatherDescription.includes('chuva')) { 
+      imageUrl = [AlertMed];
+      descriptionClima = "Possibilidade de chuvas moderadas. Mantenha-se atento às atualizações e tome precauções";// URL_PARA_CHUVA forte
+      descriptionClass = Styles['rain-text'];
+    } else if (weatherDescription.includes('chuvisco')) { 
+      imageUrl = [AlertMed]; // URL_PARA_CHUVISCO
+      descriptionClima = "Possibilidade de chuvas moderadas. Mantenha-se atento às atualizações e tome precauções";
+      descriptionClass = Styles['drizzle-text']; 
+    } else {
       imageUrl = [Normal]; // URL_PARA_CLIMA_NORMAL
-      descriptionClima = "No momento não há impacto significativo na rotina da cidade, mas seguimos monitorando";
-      descriptionClass = Styles['normal-text']; // Aplica a classe CSS para clima normal
-
-  }
+      descriptionClima = "Não há risco de chuvas. Fique tranquilo e mantenha-se informado sobre as condições climáticas locais.";
+      descriptionClass = Styles['normal-text'];
+    }
 
   return (
     <div className={Styles.Container}>
-    <div className={Styles.Imagem} style={{ backgroundImage: `url(${imageUrl})`, backgroundSize: 'cover' }}></div>
-    <div className={Styles.Alerta}>
-    <p className={Styles.text_regiao}> Cidade em Estágio de: </p>
-    <p className={descriptionClass}>{descriptionClima}</p>
+      <div className={Styles.Alerta}>
+        <div className={Styles.Imagem} style={{ backgroundImage: url(${imageUrl}), backgroundSize: 'cover' }}></div>
+        <div className={Styles.dcAlerta}>
+          <p>Condição Atual do Tempo: {weatherDescription}</p>
+        </div>
+        <p className={descriptionClass}>{descriptionClima}</p>
+      </div>  
     </div> 
-      <div className={Styles.dcAlerta}>
-              <p>Condição atual: {weatherDescription}</p>
-      </div>
-      
-      </div>
   );
 };
 
