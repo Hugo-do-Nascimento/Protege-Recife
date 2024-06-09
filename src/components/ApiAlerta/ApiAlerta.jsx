@@ -7,7 +7,7 @@ import AlertMed from '../../assets/triangle-alert.svg';
 import Styles from './ApiAlerta.module.css'
 
 const API_KEY = '447954334ef4e0c591d2ef05536ccc95';
-const CITY_NAME = 'Manaus';
+const CITY_NAME = 'Goalpara';
 
 const ApiAlerta = () => {
   const [weather, setWeather] = useState(null);
@@ -39,9 +39,9 @@ const ApiAlerta = () => {
       descriptionClima = "Alerta de chuvas intensas! Risco de enchentes e deslizamentos. Evite áreas de risco e busque abrigo seguro imediatamente.";// URL_PARA_tempestade
       descriptionClass = Styles['storm-text'];
     } else if (weatherDescription.includes('chuva')) { 
-      imageUrl = [AlertMed];
-      descriptionClima = "Possibilidade de chuvas moderadas. Mantenha-se atento às atualizações e tome precauções";// URL_PARA_CHUVA forte
-      descriptionClass = Styles['rain-text'];
+      imageUrl = [AlertaMax];
+      descriptionClima = "Alerta de chuvas intensas! Risco de enchentes e deslizamentos. Evite áreas de risco e busque abrigo seguro imediatamente.";// URL_PARA_CHUVA forte
+      descriptionClass = Styles['storm-text'];
     } else if (weatherDescription.includes('chuvisco')) { 
       imageUrl = [AlertMed]; // URL_PARA_CHUVISCO
       descriptionClima = "Possibilidade de chuvas moderadas. Mantenha-se atento às atualizações e tome precauções";
