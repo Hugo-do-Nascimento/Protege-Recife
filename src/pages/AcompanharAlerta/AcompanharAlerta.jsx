@@ -1,9 +1,8 @@
 import React from 'react';
 import Styles from './AcompanharAlerta.module.css';
 import Navbar from '../../components/Navbar/Navbar';
-import ApiClima from '../../components/ApiClima/ApiClima';
 import ApiAlerta from '../../components/ApiAlerta/ApiAlerta';
-// Imagem dos botões
+import TituloPagina from '../../components/TituloPagina/TituloPagina';
 
 // Funções para direcionamento de paginas
 import Chatbot from '../../components/Chatbot/Chatbot';
@@ -20,11 +19,11 @@ function Alerta() {
 
   return (
     <div>
-    <Navbar />      
-    <ApiClima />
+    <Navbar />
+    <TituloPagina titulo='Acompanhar Alerta' />      
     <Chatbot />
     <ApiAlerta/>
-    <p>Encontre um lugar para se abrigar</p>
+    <p className={Styles.text}>Em caso de mudança brusca do tempo, encontre um lugar seguro para se abrigar.</p>
     <button onClick={handleBuscarLocal} className={Styles.btn}>
           Buscar Local
           </button>
