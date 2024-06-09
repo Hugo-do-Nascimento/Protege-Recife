@@ -36,8 +36,6 @@ return(
         <div className={style.profileDropdown}>
           <ul className={style.profileOptions}>
             <li className={style.profileOption}>Perfil</li>
-            <li className={style.profileOption}>Conta</li>
-            <li className={style.profileOption}>Dashboard</li>
             <li className={style.profileOption} onClick={handleLogout} >Sair</li>
           </ul>
         </div>
