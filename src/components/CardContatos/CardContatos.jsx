@@ -7,11 +7,11 @@ const CardContatos = ({ nomeOrgao, numeroContato }) => {
     <div className={styles.CardContatos}>
         <h3>{nomeOrgao}</h3>
         <p>{numeroContato}</p>
-        <a href={tel:${numeroContato}}>
+        <a href={`tel:${numeroContato}`}>
         <Button variant="contained">Ligar</Button>
         </a>
     </div>
   )
 }
 
-export default CardContatos
+export default CardContatos;

@@ -14,6 +14,7 @@ const DetalhesAbrigo = () => {
   const { abrigo } = location.state || {}; // Pega o estado da navegação ou define como objeto vazio
 
   const enviarEmail = () => {
+
     const dadosUsuario = {
       nomeUsuario: "Maria das Dores",
       emailUsuario: "hugovinitek@gmail.com",
@@ -34,7 +35,7 @@ const DetalhesAbrigo = () => {
       idades_criancas: dadosUsuario.idadesCriancas,
       idades_adultos: dadosUsuario.idadesAdultos,
       telefone: dadosUsuario.telefone,
-      mensagem: Eu ${dadosUsuario.nomeUsuario}, usuário do Protege Recife, solicito abrigo em seu espaço.
+      mensagem: `Eu ${dadosUsuario.nomeUsuario}, usuário do Protege Recife, solicito abrigo em seu espaço.`
     };
 
     console.log(templateParams.to_email);

@@ -15,7 +15,7 @@ const ApiAlerta = () => {
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        const response = await axios.get(https://api.openweathermap.org/data/2.5/weather?q=${CITY_NAME}&units=metric&appid=${API_KEY}&lang=pt_br);
+        const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${CITY_NAME}&units=metric&appid=${API_KEY}&lang=pt_br`);
         setWeather(response.data);
       } catch (error) {
         console.error('Erro ao obter dados meteorológicos:', error);
@@ -55,7 +55,7 @@ const ApiAlerta = () => {
   return (
     <div className={Styles.Container}>
       <div className={Styles.Alerta}>
-        <div className={Styles.Imagem} style={{ backgroundImage: url(${imageUrl}), backgroundSize: 'cover' }}></div>
+        <div className={Styles.Imagem} style={{ backgroundImage: `url(${imageUrl})`, backgroundSize: 'cover' }}></div>
         <div className={Styles.dcAlerta}>
           <p>Condição Atual do Tempo: {weatherDescription}</p>
         </div>
