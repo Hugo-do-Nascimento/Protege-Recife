@@ -47,10 +47,11 @@
 
 .card label input {
     width: 300px;
-    height: 40px;
+    height: 20px;
     border: 2px solid #4f4e4e;
     border-radius: 10px;
     background: transparent;
+    padding: 10px;
 }
 
 .btn {

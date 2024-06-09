@@ -34,7 +34,7 @@ const Login = () => {
                     type='email'
                     name='email'
                     required
-                    placeholder='    Insira seu email'
+                    placeholder='Insira seu email'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
@@ -45,15 +45,15 @@ const Login = () => {
                     type='password'
                     name='password'
                     required
-                    placeholder='    Insira sua senha'
+                    placeholder='Insira sua senha'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
             </label>
             <button className={style.btn}>Entrar</button>
             {error && <p className='error'>{error.message}</p>}
-            </form>
             <Link className={style.link} to='/cadastro'>Criar Conta</Link>
+            </form>
         </div>
     </div>
   )
