@@ -2,7 +2,7 @@
     background-image: url('../../assets/BomJesus.png');
     background-size: cover;
     background-position: center;
-    height: 100vh;
+    height: auto;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -21,12 +21,14 @@
     padding: 25px;
     padding-left: 100px;
     padding-right: 100px;
-    gap: 15px;
+    gap: 5px;
     max-width: 80%;
     margin: 20px;
     margin-top: 40px;
     margin-bottom: 40px;
     font-family: "Open Sans", sans-serif;
+    justify-content: center;
+    align-items: center;
 }
 
 .card h2 {
@@ -39,7 +41,7 @@
 
 .card span {
     color: #000;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-style: normal;
     font-weight: 500;
     margin-right: auto;
@@ -60,6 +62,7 @@
     border: 2px solid #636363;
     border-radius: 10px;
     background: transparent;
+    padding-left: 10px;
 }
 
 .btn {
@@ -85,12 +88,12 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    gap: 24px;
+    gap: 10px;
     align-items: center;
 }
 
 .logo {
-    margin: 20px;
+    margin: 10px 10px 10px 10px;
 }
 
 @media (max-width: 768px) {
