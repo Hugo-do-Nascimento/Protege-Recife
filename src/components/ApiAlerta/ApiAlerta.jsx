@@ -7,7 +7,7 @@ import AlertMed from '../../assets/triangle-alert.svg';
 import Styles from './ApiAlerta.module.css'
 
 const API_KEY = '447954334ef4e0c591d2ef05536ccc95';
-const CITY_NAME = 'Recife';
+const CITY_NAME = 'Manaus';
 
 const ApiAlerta = () => {
   const [weather, setWeather] = useState(null);
