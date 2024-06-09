@@ -16,19 +16,41 @@ import HigieneLimpeza from '../../components/HigieneLimpeza/HigieneLimpeza';
 import MaterialEscolar from '../../components/MaterialEscolar/MaterialEscolar';
 import Vestuario from '../../components/Vestuario//Vestuario';
 import Navbar from '../../components/Navbar/Navbar';
+import TituloPagina from '../../components/TituloPagina/TituloPagina';
+import { useNavigate } from 'react-router-dom';
 
 const Doacao = () => {
-
-  const [categoria, setCategoria] = useState();
+  const navigate = useNavigate();
 
   const handleCategoriaClick = (categoria) => {
-    setCategoria(categoria);
-  };
+    switch (categoria) {
+      case 'alimentacao':
+        navigate('/alimentacao');
+        break;
+      case 'calcados':
+        navigate('/calcados');
+        break;
+      case 'camaMesaBanho':
+        navigate('/cama-mesa-banho');
+        break;
+      case 'higieneLimpeza':
+        navigate('/higiene-limpeza');
+        break;
+      case 'materialEscolar':
+        navigate('/material-escolar');
+        break;
+      case 'vestuario':
+        navigate('/vestuario');
+        break;
+      default:
+        break;            
+    }
+  }
 
   return (
     <div>
       <Navbar />
-      <h1><span>Categorias</span></h1>
+      <TituloPagina titulo='Doações' />
       <div className={style.conjunto_botoes}>
         <button onClick={() => handleCategoriaClick('alimentacao')} className={style.botao_azul}>
           <img src={iconeAli} alt=''/>
@@ -55,13 +77,6 @@ const Doacao = () => {
           <p>Vestuário</p>
         </button>
     </div>
-    {categoria === 'aliementacao' && <Alimentacao />}
-    {categoria === 'calcados' && <Calcados />}
-    {categoria === 'camaMesaBanho' && <CamaMesaBanho />}
-    {categoria === 'materialEscolar' && <MaterialEscolar />}
-    {categoria === 'vestuario' && <Vestuario />}
-    {categoria === 'higieneLimpeza' && <HigieneLimpeza />}
-
   </div>
   );
 }
