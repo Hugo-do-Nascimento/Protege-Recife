@@ -186,7 +186,7 @@ const BuscarLocais = () => {
   );
 
   const handleCardClick = (abrigo) => {
-    navigate(`/detalhes/${abrigo.id}, { state: { abrigo }}`);
+    navigate(`/detalhes/${abrigo.id}`, { state: { abrigo }});
   };  
 
   return (
