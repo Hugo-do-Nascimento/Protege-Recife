@@ -2,27 +2,31 @@ import React from 'react';
 import styles from './../Calcados/Calcados.module.css';
 import Navbar from '../Navbar/Navbar';
 import TituloPagina from '../TituloPagina/TituloPagina';
+import { useState, useEffect } from 'react';
 
 const Calcados = () => {
+  const [calcados, setCalcados] = useState([]);
 
-  const dadosDoacao = [
-    {
-      "id": 1,
-      "tipo": "Sandálias de Crianças",
-      "nome": "Abrigo 1",
-      "endereco": "Rua Prof. José Amarino dos Reis, 392",
-      "telefone": "(81) 98888-7777",
-      "email": "exemplo@gmail.com",
-    },
-    {
-      "id": 2,
-      "tipo": "Sapatos",
-      "nome": "Abrigo 2",
-      "endereco": "Rua Prof. José Amarino dos Reis, 392",
-      "telefone": "(81) 98888-7777",
-      "email": "exemplo@gmail.com",
-    },
-  ];
+  useEffect(() => {
+    fetchCalcados();
+  }, []);
+
+  const fetchCalcados = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/api/calcados/all/', {
+        method: 'GET',
+      });
+      const data = await response.json();
+      if (Array.isArray(data)) {
+        setCalcados(data);
+      } else {
+        console.error('Erro: A resposta da API não é um array:', data);
+      }
+    } catch (error) {
+      console.error('Erro ao buscar calcados:', error);    
+    }
+  }
+
 
   return (
     <div>
@@ -30,17 +34,15 @@ const Calcados = () => {
       <TituloPagina titulo='Calçados'/>
 
       <div className={styles.conjuntoCards}>
-        {dadosDoacao.map((doacao, index) => (
-            <div key={index} className={styles.CardContatos}>
-              <h3>{doacao.tipo}</h3>
-              <p>{doacao.nome}</p>
-              <p>{doacao.endereco}</p>
-              <p>{doacao.telefone}</p>
-              <p>{doacao.email}</p>
-            </div>
-          ))}
+        {Array.isArray(calcados) && calcados.map((calcado, index) => (
+          <div key={index} className={styles.CardContatos}>
+            <h3>{calcado.tipoCalcados}</h3>
+            <p>Quantidade: {calcado.quantidade}</p>
+            <p>Endereço: {calcado.enderecoCalcado}</p>
+            <p>Telefone: {calcado.numTelefone}</p>
+          </div>
+        ))}
       </div>
-
     </div>
   )
 }

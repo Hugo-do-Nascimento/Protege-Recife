@@ -62,8 +62,8 @@ const DetalhesAbrigo = () => {
         </Alert>
       <div className={styles.cardDetails} >
         <Typography variant="h4" className={styles.title}>{abrigo.nome}</Typography>
-        <Typography variant="body1" className={styles.detail}>Endereço: {abrigo.endereco}</Typography>
-        <Typography variant="body1" className={styles.detail}>Telefone: {abrigo.telefone}</Typography>
+        <Typography variant="body1" className={styles.detail}>Endereço: {abrigo.enderecoAbrigo}</Typography>
+        <Typography variant="body1" className={styles.detail}>Telefone: {abrigo.numTelefone}</Typography>
         <Typography variant="body1" className={styles.detail}>Email: {abrigo.email}</Typography>
         <Button variant="contained" onClick={enviarEmail}>Solicitar Abrigo</Button>
       </div>
