@@ -5,13 +5,15 @@ import style from './../Navbar/Navbar.module.css';
 import React, { useState } from 'react';
 import profile from '../../assets/iconeProfile.png';
 import Logo from '../../assets/logoL.svg';
-
-import useAuthentication from '../../hook/useAuthentication';
+import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
-  const { handleLogout } = useAuthentication();
+  const handleLogout = () => {
+    navigate('/login');
+  }
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
