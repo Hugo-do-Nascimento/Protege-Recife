@@ -55,6 +55,44 @@ const BuscarLocais = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [abrigos, setAbrigos] = useState([]);
 
+  const localAbrigos = [
+    {
+      "id": 1,
+      "nome": "Abrigo Esperança",
+      "enderecoAbrigo": "Rua das Flores, 123",
+      "numTelefone": "(11) 1234-5678",
+      "email": "contato@abrigoesperanca.org"
+    },
+    {
+      "id": 2,
+      "nome": "Abrigo Do Amor",
+      "enderecoAbrigo": "Avenida da amizade, 456",
+      "numTelefone": "(11) 8765-4321",
+      "email": "contato@abrigoluz.org"
+    },
+    {
+      "id": 3,
+      "nome": "Abrigo Lar Amigo",
+      "enderecoAbrigo": "Avenida da paz, 456",
+      "numTelefone": "(11) 8765-4321",
+      "email": "contato@abrigoluz.org"
+    },
+    {
+      "id": 4,
+      "nome": "Abrigo Santo Agostinho",
+      "enderecoAbrigo": "Avenida santo agostinho, 456",
+      "numTelefone": "(11) 8765-4321",
+      "email": "contato@abrigoluz.org"
+    },
+    {
+      "id": 5,
+      "nome": "Abrigo central do Recife",
+      "enderecoAbrigo": "Avenida central do recife, 456",
+      "numTelefone": "(11) 8765-4321",
+      "email": "contato@abrigoluz.org"
+    }
+  ];
+
   useEffect(() => {
     fetchAbrigos();
   }, []);
@@ -66,12 +104,12 @@ const BuscarLocais = () => {
       });
       if (!response.ok) {
         throw new Error('Erro ao buscar abrigos');
-      }  
+      }
       const data = await response.json();
       setAbrigos(data);
     } catch (error) {
       console.error('Erro ao buscar abrigos:', error);
-      alert('Erro ao buscar abrigos: ' + error.message);
+      setAbrigos(localAbrigos); // Carregar dados do JSON local em caso de erro
     }
   };
 
@@ -85,37 +123,37 @@ const BuscarLocais = () => {
 
   const handleCardClick = (abrigo) => {
     navigate(`/detalhes/${abrigo.id}`, { state: { abrigo }});
-  };  
+  };
 
   return (
     <>
-    <Navbar />
-    <TituloPagina titulo='Buscar Locais' />
+      <Navbar />
+      <TituloPagina titulo='Buscar Locais' />
       <br />
-        <Toolbar>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Buscar abrigo..."
-              inputProps={{ 'aria-label': 'search' }}
-              value={searchTerm}
-              onChange={handleInputChange}
-            />
-          </Search>
-        </Toolbar>
+      <Toolbar>
+        <Search>
+          <SearchIconWrapper>
+            <SearchIcon />
+          </SearchIconWrapper>
+          <StyledInputBase
+            placeholder="Buscar abrigo..."
+            inputProps={{ 'aria-label': 'search' }}
+            value={searchTerm}
+            onChange={handleInputChange}
+          />
+        </Search>
+      </Toolbar>
 
-    <div className={styles.conjuntoCards}>
-      {filteredAbrigos.map((abrigo, index) => (
-        <div key={abrigo.id} onClick={() => handleCardClick(abrigo)} className={styles.CardContatos}>
-          <h3>{abrigo.nome}</h3>
-          <p>{abrigo.enderecoAbrigo}</p>
-          <p>{abrigo.numTelefone}</p>
-          <p>{abrigo.email}</p>
-        </div>
-      ))}
-    </div>
+      <div className={styles.conjuntoCards}>
+        {filteredAbrigos.map((abrigo) => (
+          <div key={abrigo.id} onClick={() => handleCardClick(abrigo)} className={styles.CardContatos}>
+            <h3>{abrigo.nome}</h3>
+            <p>{abrigo.enderecoAbrigo}</p>
+            <p>{abrigo.numTelefone}</p>
+            <p>{abrigo.email}</p>
+          </div>
+        ))}
+      </div>
     </>
   );
 }

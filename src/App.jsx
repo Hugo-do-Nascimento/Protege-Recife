@@ -31,20 +31,20 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={usuario ? <Home /> : <Navigate to='/login' />} />
-          <Route path='/cadastro' element={!usuario ? <Cadastro /> : <Navigate to="/" />} />
-          <Route path='/login' element={!usuario ? <Login /> : <Navigate to="/" />} />
-          <Route path='/buscar-locais' element={usuario ? <BuscarLocais /> : <Navigate to="/login" />} />
-          <Route path='/doacoes' element={usuario ? <Doacao /> : <Navigate to="/login" />} />
-          <Route path='/contatos' element={usuario ? <ContatosDeEmergencia /> : <Navigate to="/login" />} />
-          <Route path='/acompanhar-alerta' element={usuario ? <AcompanharAlerta /> : <Navigate to="/login" />} />
+        <Route path='/' element={<Home />} />
+          <Route path='/cadastro' element={<Cadastro />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/buscar-locais' element={<BuscarLocais />} />
+          <Route path='/doacoes' element={<Doacao />} />
+          <Route path='/contatos' element={<ContatosDeEmergencia />} />
+          <Route path='/acompanhar-alerta' element={<AcompanharAlerta />} />
           <Route path='/detalhes/:id' element={<CardPedidoZap />} />
-          <Route path='/alimentacao' element={usuario ? <Alimentacao /> : <Navigate to="/login" />} />
-          <Route path='/calcados' element={usuario ? <Calcados /> : <Navigate to="/login" />} />
-          <Route path='/cama-mesa-banho' element={usuario ? <CamaMesaBanho /> : <Navigate to="/login" />} />
-          <Route path='/higiene-limpeza' element={usuario ? <HigieneLimpeza /> : <Navigate to="/login" />} />
-          <Route path='/material-escolar' element={usuario ? <MaterialEscolar /> : <Navigate to="/login" />} />
-          <Route path='/vestuario' element={usuario ? <Vestuario /> : <Navigate to="/login" />} />
+          <Route path='/alimentacao' element={<Alimentacao />} />
+          <Route path='/calcados' element={<Calcados />} />
+          <Route path='/cama-mesa-banho' element={<CamaMesaBanho />} />
+          <Route path='/higiene-limpeza' element={<HigieneLimpeza />} />
+          <Route path='/material-escolar' element={<MaterialEscolar />} />
+          <Route path='/vestuario' element={<Vestuario />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </BrowserRouter>

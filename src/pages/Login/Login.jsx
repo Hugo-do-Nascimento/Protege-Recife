@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import useAuthentication from '../../hook/useAuthentication';
 import logo from '../../assets/logoL.svg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import style from './Login.module.css';
 
@@ -9,17 +9,11 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    const { handleLogin } = useAuthentication();
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        handleLogin(email,password);
-
-        try {
-            await handleLogin(email, password);
-        } catch (error) {
-            setError("Credenciais inválidas. Por favor, verifique seu email e senha.");
-        }
+        navigate('/')
     };
 
   return (
@@ -33,7 +27,6 @@ const Login = () => {
                 <input 
                     type='email'
                     name='email'
-                    required
                     placeholder='Insira seu email'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -44,7 +37,6 @@ const Login = () => {
                 <input 
                     type='password'
                     name='password'
-                    required
                     placeholder='Insira sua senha'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
