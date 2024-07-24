@@ -8,6 +8,7 @@ import Toolbar from '@mui/material/Toolbar';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import TituloPagina from '../../components/TituloPagina/TituloPagina';
+import axios from 'axios';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -53,6 +54,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const BuscarLocais = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
+  // const [abrigos, setAbrigos] = useState([]);
   const [abrigos, setAbrigos] = useState([]);
 
   const localAbrigos = [
@@ -94,32 +96,36 @@ const BuscarLocais = () => {
   ];
 
   useEffect(() => {
+    const fetchAbrigos = async () => {
+      try {
+        const response = await axios({
+          method: 'GET',
+          url: 'https://api.baserow.io/api/database/rows/table/318166/?user_field_names=true',
+          headers: {
+            Authorization: "Token T55hU00HK4IovT3n302mC6qCHaLmjDoT"
+          }
+        })
+  
+        console.log('Status da resposta:', response.status);
+        console.log('Status da resposta:', response.data);
+  
+        setAbrigos(response.data.results);
+      } catch (error) {
+        console.error('Erro ao buscar abrigos:', error);
+        // setAbrigos(localAbrigos); // Carregar dados do JSON local em caso de erro
+      }
+    };
+
     fetchAbrigos();
   }, []);
-
-  const fetchAbrigos = async () => {
-    try {
-      const response = await fetch('http://localhost:8080/api/abrigos/all/', {
-        method: 'GET',
-      });
-      if (!response.ok) {
-        throw new Error('Erro ao buscar abrigos');
-      }
-      const data = await response.json();
-      setAbrigos(data);
-    } catch (error) {
-      console.error('Erro ao buscar abrigos:', error);
-      setAbrigos(localAbrigos); // Carregar dados do JSON local em caso de erro
-    }
-  };
 
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
   }
 
-  const filteredAbrigos = abrigos.filter((abrigo) => 
-    (abrigo.nome.toLowerCase().includes(searchTerm.toLowerCase())) || (abrigo.enderecoAbrigo.toLowerCase().includes(searchTerm.toLowerCase()))
-  );
+  // const filteredAbrigos = abrigos.filter((abrigo) => 
+  //   (abrigo.Nome.toLowerCase().includes(searchTerm.toLowerCase())) || (abrigo.Endereco.toLowerCase().includes(searchTerm.toLowerCase()))
+  // );
 
   const handleCardClick = (abrigo) => {
     navigate(`/detalhes/${abrigo.id}`, { state: { abrigo }});
@@ -145,15 +151,19 @@ const BuscarLocais = () => {
       </Toolbar>
 
       <div className={styles.conjuntoCards}>
-        {filteredAbrigos.map((abrigo) => (
-          <div key={abrigo.id} onClick={() => handleCardClick(abrigo)} className={styles.CardContatos}>
-            <h3>{abrigo.nome}</h3>
-            <p>{abrigo.enderecoAbrigo}</p>
-            <p>{abrigo.numTelefone}</p>
-            <p>{abrigo.email}</p>
-          </div>
-        ))}
-      </div>
+      {abrigos.map((abrigo) => (
+        <div
+          key={abrigo.id}
+          onClick={() => handleCardClick(abrigo)}
+          className={styles.CardContatos}
+        >
+          <h3>{abrigo.Nome}</h3>
+          <p>{abrigo.Endereco}</p>
+          <p>{abrigo.Telefone}</p>
+          <p>{abrigo.Email}</p>
+        </div>
+      ))}
+    </div>
     </>
   );
 }

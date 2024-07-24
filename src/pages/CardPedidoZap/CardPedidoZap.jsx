@@ -61,10 +61,10 @@ const DetalhesAbrigo = () => {
             O resultado da sua solicitação chegará no seu email de cadastro.
         </Alert>
       <div className={styles.cardDetails} >
-        <Typography variant="h4" className={styles.title}>{abrigo.nome}</Typography>
-        <Typography variant="body1" className={styles.detail}>Endereço: {abrigo.enderecoAbrigo}</Typography>
-        <Typography variant="body1" className={styles.detail}>Telefone: {abrigo.numTelefone}</Typography>
-        <Typography variant="body1" className={styles.detail}>Email: {abrigo.email}</Typography>
+        <Typography variant="h4" className={styles.title}>{abrigo.Nome}</Typography>
+        <Typography variant="body1" className={styles.detail}>Endereço: {abrigo.Endereco}</Typography>
+        <Typography variant="body1" className={styles.detail}>Telefone: {abrigo.Telefone}</Typography>
+        <Typography variant="body1" className={styles.detail}>Email: {abrigo.Email}</Typography>
         <Button variant="contained" onClick={enviarEmail}>Solicitar Abrigo</Button>
       </div>
     </>
