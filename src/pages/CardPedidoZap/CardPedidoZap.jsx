@@ -26,8 +26,8 @@ const DetalhesAbrigo = () => {
     };
 
     const templateParams = {
-      to_name: abrigo?.nome,
-      to_email: abrigo?.email,
+      to_name: abrigo?.Nome,
+      to_email: abrigo?.Email,
       from_name: dadosUsuario.nomeUsuario,
       from_email: dadosUsuario.emailUsuario,
       num_criancas: dadosUsuario.numeroCriancas,

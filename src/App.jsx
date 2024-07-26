@@ -16,12 +16,6 @@ import ContatosDeEmergencia from './pages/ContatosDeEmergencia/ContatosDeEmergen
 import AcompanharAlerta from './pages/AcompanharAlerta/AcompanharAlerta';
 import NotFound from './pages/NotFound/NotFound';
 import CardPedidoZap from './pages/CardPedidoZap/CardPedidoZap';
-import Calcados from './components/Calcados/Calcados';
-import CamaMesaBanho from './components/CamaMesaBanho/CamaMesaBanho';
-import HigieneLimpeza from './components/HigieneLimpeza/HigieneLimpeza';
-import MaterialEscolar from './components/MaterialEscolar/MaterialEscolar';
-import Vestuario from './components/Vestuario/Vestuario';
-import Alimentacao from './components/Alimentacao/Alimentacao';
 
 function App() {
 
@@ -39,12 +33,6 @@ function App() {
           <Route path='/contatos' element={<ContatosDeEmergencia />} />
           <Route path='/acompanhar-alerta' element={<AcompanharAlerta />} />
           <Route path='/detalhes/:id' element={<CardPedidoZap />} />
-          <Route path='/alimentacao' element={<Alimentacao />} />
-          <Route path='/calcados' element={<Calcados />} />
-          <Route path='/cama-mesa-banho' element={<CamaMesaBanho />} />
-          <Route path='/higiene-limpeza' element={<HigieneLimpeza />} />
-          <Route path='/material-escolar' element={<MaterialEscolar />} />
-          <Route path='/vestuario' element={<Vestuario />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </BrowserRouter>

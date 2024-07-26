@@ -1,118 +1,33 @@
-import styles from '../BuscarLocais/BuscarLocais.module.css';
-import * as React from 'react';
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Navbar from '../../components/Navbar/Navbar';
-import { styled, alpha } from '@mui/material/styles';
-import Toolbar from '@mui/material/Toolbar';
-import InputBase from '@mui/material/InputBase';
-import SearchIcon from '@mui/icons-material/Search';
-import TituloPagina from '../../components/TituloPagina/TituloPagina';
-import axios from 'axios';
-
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: '20px',
-  border: '1px solid #d9d9d9',
-  backgroundColor: '#d9d9d9',
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginLeft: 0,
-  width: '100%',
-  margin: '20px',
-  height: '50px'
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  width: '100%',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    [theme.breakpoints.up('sm')]: {
-      width: '12ch',
-      '&:focus': {
-        width: '20ch',
-      },
-    },
-  },
-}));
+import styles from "../BuscarLocais/BuscarLocais.module.css";
+import * as React from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Navbar from "../../components/Navbar/Navbar";
+import TituloPagina from "../../components/TituloPagina/TituloPagina";
+import axios from "axios";
 
 const BuscarLocais = () => {
   const navigate = useNavigate();
-  const [searchTerm, setSearchTerm] = useState('');
-  // const [abrigos, setAbrigos] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const [abrigos, setAbrigos] = useState([]);
-
-  const localAbrigos = [
-    {
-      "id": 1,
-      "nome": "Abrigo Esperança",
-      "enderecoAbrigo": "Rua das Flores, 123",
-      "numTelefone": "(11) 1234-5678",
-      "email": "contato@abrigoesperanca.org"
-    },
-    {
-      "id": 2,
-      "nome": "Abrigo Do Amor",
-      "enderecoAbrigo": "Avenida da amizade, 456",
-      "numTelefone": "(11) 8765-4321",
-      "email": "contato@abrigoluz.org"
-    },
-    {
-      "id": 3,
-      "nome": "Abrigo Lar Amigo",
-      "enderecoAbrigo": "Avenida da paz, 456",
-      "numTelefone": "(11) 8765-4321",
-      "email": "contato@abrigoluz.org"
-    },
-    {
-      "id": 4,
-      "nome": "Abrigo Santo Agostinho",
-      "enderecoAbrigo": "Avenida santo agostinho, 456",
-      "numTelefone": "(11) 8765-4321",
-      "email": "contato@abrigoluz.org"
-    },
-    {
-      "id": 5,
-      "nome": "Abrigo central do Recife",
-      "enderecoAbrigo": "Avenida central do recife, 456",
-      "numTelefone": "(11) 8765-4321",
-      "email": "contato@abrigoluz.org"
-    }
-  ];
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchAbrigos = async () => {
       try {
         const response = await axios({
-          method: 'GET',
-          url: 'https://api.baserow.io/api/database/rows/table/318166/?user_field_names=true',
+          method: "GET",
+          url: "https://api.baserow.io/api/database/rows/table/318166/?user_field_names=true",
           headers: {
-            Authorization: "Token T55hU00HK4IovT3n302mC6qCHaLmjDoT"
-          }
-        })
-  
-        console.log('Status da resposta:', response.status);
-        console.log('Status da resposta:', response.data);
-  
+            Authorization: "Token T55hU00HK4IovT3n302mC6qCHaLmjDoT",
+          },
+        });
+
         setAbrigos(response.data.results);
+        setIsLoading(false);
       } catch (error) {
-        console.error('Erro ao buscar abrigos:', error);
-        // setAbrigos(localAbrigos); // Carregar dados do JSON local em caso de erro
+        console.error("Erro ao buscar abrigos:", error);
+        setIsLoading(false)
       }
     };
 
@@ -121,51 +36,56 @@ const BuscarLocais = () => {
 
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
-  }
+  };
 
-  // const filteredAbrigos = abrigos.filter((abrigo) => 
-  //   (abrigo.Nome.toLowerCase().includes(searchTerm.toLowerCase())) || (abrigo.Endereco.toLowerCase().includes(searchTerm.toLowerCase()))
-  // );
+  const filteredAbrigos = abrigos.filter(
+    (abrigo) =>
+      abrigo.Nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      abrigo.Endereco.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const handleCardClick = (abrigo) => {
-    navigate(`/detalhes/${abrigo.id}`, { state: { abrigo }});
+    navigate(`/detalhes/${abrigo.id}`, { state: { abrigo } });
   };
 
   return (
-    <>
+    <div className={styles.container}>
       <Navbar />
-      <TituloPagina titulo='Buscar Locais' />
+      <TituloPagina titulo="Buscar Locais" />
       <br />
-      <Toolbar>
-        <Search>
-          <SearchIconWrapper>
-            <SearchIcon />
-          </SearchIconWrapper>
-          <StyledInputBase
-            placeholder="Buscar abrigo..."
-            inputProps={{ 'aria-label': 'search' }}
-            value={searchTerm}
-            onChange={handleInputChange}
-          />
-        </Search>
-      </Toolbar>
+
+      <input
+        className={styles.input}
+        type="text"
+        placeholder="Digite o nome do abrigo"
+        value={searchTerm}
+        onChange={handleInputChange}
+      />
 
       <div className={styles.conjuntoCards}>
-      {abrigos.map((abrigo) => (
-        <div
-          key={abrigo.id}
-          onClick={() => handleCardClick(abrigo)}
-          className={styles.CardContatos}
-        >
-          <h3>{abrigo.Nome}</h3>
-          <p>{abrigo.Endereco}</p>
-          <p>{abrigo.Telefone}</p>
-          <p>{abrigo.Email}</p>
-        </div>
-      ))}
+        {isLoading ? (
+          <p>Carregando...</p>
+        ) : (
+          filteredAbrigos.length > 0 ? (
+            filteredAbrigos.map((abrigo) => (
+              <div
+                key={abrigo.id}
+                onClick={() => handleCardClick(abrigo)}
+                className={styles.CardContatos}
+              >
+                <h3>{abrigo.Nome}</h3>
+                <p>{abrigo.Endereco}</p>
+                <p>{abrigo.Telefone}</p>
+                <p>{abrigo.Email}</p>
+              </div>
+            ))) : (
+              <p>Não foi encontrado nenhum abrigo com esse nome</p>
+            )
+          
+        )}
+      </div>
     </div>
-    </>
   );
-}
+};
 
 export default BuscarLocais;

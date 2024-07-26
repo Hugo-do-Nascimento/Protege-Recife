@@ -1,82 +1,62 @@
-import React, { useState } from 'react';
-import style from './../Doacao/Doacao.module.css';
-
-//imagens dos botões
-import iconeAli from '../../assets/iconeAlimentacao.svg';
-import iconeCal from '../../assets/iconeCalcados.svg';
-import iconeCama from '../../assets/iconeCama.svg';
-import iconeHigiene from '../../assets/iconeHigiene.svg';
-import iconeMaterial from '../../assets/iconeMaterial.svg';
-import iconeVestuario from '../../assets/iconeVestuario.svg';
-
-import Alimentacao from '../../components/Alimentacao/Alimentacao';
-import Calcados from '../../components/Calcados/Calcados';
-import CamaMesaBanho from '../../components/CamaMesaBanho/CamaMesaBanho';
-import HigieneLimpeza from '../../components/HigieneLimpeza/HigieneLimpeza';
-import MaterialEscolar from '../../components/MaterialEscolar/MaterialEscolar';
-import Vestuario from '../../components/Vestuario//Vestuario';
+import React, { useEffect, useState } from 'react';
+import styles from './../Doacao/Doacao.module.css';
 import Navbar from '../../components/Navbar/Navbar';
 import TituloPagina from '../../components/TituloPagina/TituloPagina';
-import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Doacao = () => {
-  const navigate = useNavigate();
+  const [doacoes, setDoacoes] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const handleCategoriaClick = (categoria) => {
-    switch (categoria) {
-      case 'alimentacao':
-        navigate('/alimentacao');
-        break;
-      case 'calcados':
-        navigate('/calcados');
-        break;
-      case 'camaMesaBanho':
-        navigate('/cama-mesa-banho');
-        break;
-      case 'higieneLimpeza':
-        navigate('/higiene-limpeza');
-        break;
-      case 'materialEscolar':
-        navigate('/material-escolar');
-        break;
-      case 'vestuario':
-        navigate('/vestuario');
-        break;
-      default:
-        break;            
+  useEffect(() => {
+    const fetchDoacoes = async () => {
+      try {
+        const response = await axios({
+          method: "GET",
+          url: "https://api.baserow.io/api/database/rows/table/318176/?user_field_names=true",
+          headers: {
+            Authorization: "Token T55hU00HK4IovT3n302mC6qCHaLmjDoT",
+          },
+        });
+
+        setDoacoes(response.data.results);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Erro ao buscar Doações ", error);
+        setIsLoading(false);
+      }
     }
-  }
+
+    fetchDoacoes();
+  }, [])
 
   return (
     <div>
       <Navbar />
-      <TituloPagina titulo='Doações' />
-      <div className={style.conjunto_botoes}>
-        <button onClick={() => handleCategoriaClick('alimentacao')} className={style.botao_azul}>
-          <img src={iconeAli} alt=''/>
-          <p>Alimentação</p>
-        </button>
-        <button onClick={() => handleCategoriaClick('calcados')} className={style.botao_azul}>
-          <img src={iconeCal} alt=''/>
-          <p>Calçados</p>
-        </button>
-        <button onClick={() => handleCategoriaClick('camaMesaBanho')} className={style.botao_azul}>
-          <img src={iconeCama} alt=''/>
-          <p>Cama mesa e banho</p>
-        </button>
-        <button onClick={() => handleCategoriaClick('higieneLimpeza')} className={style.botao_azul}>
-          <img src={iconeHigiene} alt=''/>
-          <p>Higiene e Limpeza</p>
-        </button>
-        <button onClick={() => handleCategoriaClick('materialEscolar')} className={style.botao_azul}>
-          <img src={iconeMaterial} alt=''/>
-          <p>Material Escolar</p>
-        </button>
-        <button onClick={() => handleCategoriaClick('vestuario')} className={style.botao_azul}>
-          <img src={iconeVestuario} alt=''/>
-          <p>Vestuário</p>
-        </button>
-    </div>
+      <TituloPagina titulo='Mural de Doações' />
+      
+      <div className={styles.conjuntoCards}>
+        {isLoading ? (
+          <p>Carregando...</p>
+        ) : (
+          Array.isArray(doacoes) && doacoes.length > 0 ? (
+            doacoes.map((doacao, index) => (
+              <div key={index} className={styles.CardContatos}>
+                <h3>{doacao.tipoAlimento}</h3>
+                <p>{doacao.NomeLocal}</p>
+                <p>Tipo: {doacao.Nome}</p>
+                <p>Quantidade: {doacao.Quantidade}</p>
+                <p>Endereço: {doacao.Endereco}</p>
+                <p>Telefone: {doacao.Telefone}</p>            
+              </div>
+            ))
+          ) : (
+            <p>Nenhum item encontrado.</p>
+          )
+        )}
+        
+      </div>
+
   </div>
   );
 }

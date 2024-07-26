@@ -1,55 +1,115 @@
 .conjunto_botoes {
-    width: 100%;
-    max-width: 600px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    gap: 30px;
-    margin-top: 60px;
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  gap: 30px;
+  margin-top: 60px;
 }
 
 .botao_azul {
-    width: 170px;
-    height: 170px;
-    background-color: #3969c5;
-    color: #ffffff;
-    border: none;
-    border-radius: 38.592px;
-    box-shadow: 0px 5.146px 5.146px 0px rgba(0, 0, 0, 0.25), 0px 5.146px 5.146px 0px rgba(0, 0, 0, 0.25);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: background-color 0.3s ease;
+  width: 170px;
+  height: 170px;
+  background-color: #3969c5;
+  color: #ffffff;
+  border: none;
+  border-radius: 38.592px;
+  box-shadow: 0px 5.146px 5.146px 0px rgba(0, 0, 0, 0.25),
+    0px 5.146px 5.146px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
 }
 
 .botao_azul:hover {
-    background-color: #0056b3;
-    cursor: pointer;
+  background-color: #0056b3;
+  cursor: pointer;
 }
 
 .botao_azul p {
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    margin: 0;
-    padding-top: 10px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0;
+  padding-top: 10px;
+}
+
+.conjuntoCards {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.CardContatos {
+  font-family: "Open Sans", sans-serif;
+  background-color: #3969c5;
+  width: auto;
+  height: 200px;
+  margin: 20px;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.CardContatos p {
+  color: white;
+  margin: 0;
+  font-weight: normal;
+  text-align: center;
+}
+
+.CardContatos h3 {
+  color: white;
+  padding: 10px;
+  margin: 0;
+  font-weight: bold;
+  text-align: center;
+}
+
+@media (max-width: 599px) {
+  .CardContatos {
+    width: 400px;
+  }
+}
+
+@media (min-width: 600px) {
+  .conjuntoCards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .conjuntoCards {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
-    .botao_azul {
-        width: 160px;
-        height: 160px;
-        border-radius: 28.592px;
-    }
+  .botao_azul {
+    width: 160px;
+    height: 160px;
+    border-radius: 28.592px;
+  }
 
-    .botao_azul p {
-        font-size: 15px;
-    }
+  .botao_azul p {
+    font-size: 15px;
+  }
 }
