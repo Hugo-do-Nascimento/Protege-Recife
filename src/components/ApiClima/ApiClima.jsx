@@ -3,7 +3,7 @@ import style from './../ApiClima/ApiClima.module.css';
 import axios from 'axios';
 
 function ApiClima() {
-  const [city, setCity] = useState("João Pessoa");
+  const [city, setCity] = useState("Recife");
   const [weatherData, setWeatherData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);

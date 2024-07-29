@@ -43,9 +43,9 @@ const Doacao = () => {
             doacoes.map((doacao, index) => (
               <div key={index} className={styles.CardContatos}>
                 <h3>{doacao.tipoAlimento}</h3>
-                <p>{doacao.NomeLocal}</p>
-                <p>Tipo: {doacao.Nome}</p>
+                <h3>{doacao.Nome}</h3>
                 <p>Quantidade: {doacao.Quantidade}</p>
+                <p>{doacao.NomeLocal}</p>
                 <p>Endereço: {doacao.Endereco}</p>
                 <p>Telefone: {doacao.Telefone}</p>            
               </div>

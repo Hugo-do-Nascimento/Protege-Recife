@@ -14,10 +14,12 @@
 
 .loader {
   font-size: 24px;
+  margin: 30px;
 }
 
 .error_message {
   color: red;
+  margin: 30px;
 }
 
 .cidade {

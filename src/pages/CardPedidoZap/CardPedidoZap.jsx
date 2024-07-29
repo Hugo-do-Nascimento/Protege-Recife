@@ -7,11 +7,27 @@ import * as React from 'react';
 import styles from '../CardPedidoZap/CardPedidoZap.module.css';
 import Alert from '@mui/material/Alert';
 import TituloPagina from '../../components/TituloPagina/TituloPagina';
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/ReactToastify.css';
 
 
 const DetalhesAbrigo = () => {
   const location = useLocation();
   const { abrigo } = location.state || {}; // Pega o estado da navegação ou define como objeto vazio
+
+  const notify = () => {
+    toast.success('E-mail enviado com sucesso!', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
+  }
 
   const enviarEmail = () => {
 
@@ -46,7 +62,8 @@ const DetalhesAbrigo = () => {
       '5hxABj4wpeY7ldYa5'
     ).then((response) => {
       console.log('E-mail enviado com sucesso!', response.status, response.text);
-      alert('E-mail enviado com sucesso! A resposta do seu pedido chegará por email');
+      // alert('E-mail enviado com sucesso! A resposta do seu pedido chegará por email');
+      notify();
     }).catch((err) => {
       console.error('Erro ao enviar o e-mail:', err);
       alert('Erro ao enviar o e-mail: ' + err.message);
@@ -66,6 +83,7 @@ const DetalhesAbrigo = () => {
         <Typography variant="body1" className={styles.detail}>Telefone: {abrigo.Telefone}</Typography>
         <Typography variant="body1" className={styles.detail}>Email: {abrigo.Email}</Typography>
         <Button variant="contained" onClick={enviarEmail}>Solicitar Abrigo</Button>
+        <ToastContainer />
       </div>
     </>
   );
